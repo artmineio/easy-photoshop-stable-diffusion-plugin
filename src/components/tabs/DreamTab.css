@@ -1,0 +1,56 @@
+.instructionsBanner {
+    background-color: var(--uxp-host-widget-hover-background-color);
+    border-radius: 4px;
+    padding: 10px 10px 4px 10px;
+}
+
+.instructionsIcon {
+    color: var(--uxp-host-text-color);
+}
+
+.modelDropdown {
+    flex: 1 1 auto;
+    cursor: pointer;
+}
+
+.sourceLayerDropdown {
+    flex: 1 1 auto;
+    cursor: pointer;
+}
+
+.sourceLayerDropdown.highlighted {
+    border: 2px solid var(--uxp-host-link-text-color);
+    border-radius: 2px;
+    margin: -2px;
+}
+
+.seedTextField {
+    flex: 0 1 150px;
+}
+
+.dreamPromptTextArea {
+    flex: 1 1 auto;
+    height: 80px;
+    cursor: text;
+}
+
+.storedPromptKeysSelectionAreaContainer {
+    flex: 1 1 auto;
+    height: 80px;
+    overflow-y: scroll;
+    background-color: var(--uxp-host-border-color);
+    border-radius: 4px;
+}
+
+.storedPromptKeysSelectionAreaLabel {
+    margin: 0 0 0 4px;
+    padding: 0;
+}
+
+.fullWidthSlider {
+    flex: 1 1 auto;
+}
+
+.dreamButton {
+    flex: 0 1 250px;
+}

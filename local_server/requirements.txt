@@ -1,0 +1,6 @@
+fastapi[all]
+Pillow
+opencv-python
+numpy
+requests
+httpx

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    global.screen={};
+    window.WebSocket.prototype.OPEN = 1;
+    window.displayErrorMessage = () => {
+        const errorDiv = document.createElement('div');
+        errorDiv.innerHTML = "Please remove the plugin from Adobe UXP Developer Tool and add it again. When you do so, please make sure to choose the manifest.json in the 'dist' folder (not 'plugin'!)";
+        errorDiv.style.backgroundColor = '#E35335';
+        errorDiv.style.margin = 10;
+        errorDiv.style.padding = 10;
+        errorDiv.style.borderRadius = 4;
+        errorDiv.style.fontSize = 14;
+        errorDiv.style.color = 'white';
+        document.body.appendChild(errorDiv);
+    }
+  </script>
+  <script src="index.js" onerror="window.displayErrorMessage()"></script>
+</head>
+<body>
+</body>
+</html>

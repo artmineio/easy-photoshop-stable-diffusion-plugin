@@ -1,0 +1,32 @@
+.centerScreenContainer {
+    width:100%;
+    height:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.settingsModalContainer {
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.automatic1111UrlTextField {
+    cursor: text;
+    flex: 1 1 300px;
+}
+
+.errorBanner {
+    background-color: #E35335;
+    border-radius: 4px;
+    padding: 10px 10px 4px 10px;
+}
+
+.errorIcon {
+    color: var(--uxp-host-text-color);
+}

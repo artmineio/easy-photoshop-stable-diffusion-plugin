@@ -1,0 +1,140 @@
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.space1 {
+    flex: 0 0 4px;
+}
+
+.space2 {
+    flex: 0 0 8px;
+}
+
+.space3 {
+    flex: 0 0 16px;
+}
+
+.space4 {
+    flex: 0 0 24px;
+}
+
+.flexRow {
+    flex-direction: row;
+}
+
+.flexWrap {
+    flex-wrap: wrap;
+}
+
+.flexColumn {
+    flex-direction: column;
+}
+
+.justifyContentCenter {
+    justify-content: center;
+}
+
+.infoIcon {
+    color: var(--uxp-host-text-color);
+}
+
+.button, .maskLayerButton, .refreshButton, .randomButton,
+.toolButton, .dreamButton, setSourceLayerButton,
+.settingsModalButton, .settingsButton, .randomCfgOrDsButton {
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.settingsModalButton {
+    flex: 0 1 150px;
+}
+
+.maskLayerButton {
+    flex: 1 1 130px;
+}
+
+.setSourceLayerButton {
+    flex: 0 0 100px;
+    cursor: pointer;
+}
+
+.refreshButton, .randomButton, .toolButton {
+    flex: 0 0 22px;
+}
+
+.randomCfgOrDsButton {
+    margin-top: 16px;
+    margin-left: 10px;
+}
+
+.iconButton {
+    cursor: pointer;
+}
+
+.promptKeyButton {
+    cursor: pointer;
+}
+
+.advancedOptionsLabel {
+    cursor: pointer;
+}
+
+.advancedOptionsIcon {
+    flex: 0 0 14px;
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+    margin-right: 7px;
+}
+
+.tabGroup {
+    margin: 0;
+}
+
+.tabItem {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    text-align: center;
+    flex: 1 1 auto;
+    justify-content: center;
+    border: solid;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+    border-bottom-width: 2px;
+    border-color: var(--uxp-host-border-color);
+}
+
+.tabItem.small {
+    margin: 0 20px;
+    padding-top: 4px;
+}
+
+.tabItem > sp-body {
+    margin: 0;
+    padding: 0;
+}
+
+.tabItem.selected {
+    border-color: var(--uxp-host-text-color);
+}
+
+.generateProgressBarContainer {
+    /*Same height as alertContainer and Space3. This is a hack for absolute positioning seemingly not working*/
+    height: 16px;
+}
+
+.generateProgressBar {
+    margin-top: 4px;
+    flex: 1 1 auto;
+}
+
+.generateProgressBar.stopping {
+    background-color: var(--uxp-host-border-color);
+}
+
+.fontStyleCode {
+    font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+}

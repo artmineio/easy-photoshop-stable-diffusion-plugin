@@ -1,0 +1,17 @@
+.tooltipOverlayContainer {
+    margin-left: auto;
+    flex: 0 0 auto;
+    position: relative;
+}
+
+.tooltipOverlay {
+    position: absolute;
+    border-radius: 4px;
+    background-color: var(--uxp-host-widget-hover-background-color);
+    color: var(--uxp-host-text-color);
+    padding: 6px;
+    /* This translation is a bit hacky, but does center the tooltip vertically for 2-3 lines of text*/
+    transform: translate(0, -35%);
+    right: 20px;
+    width: 158px;
+}

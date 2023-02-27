@@ -1,0 +1,42 @@
+.storedPromptKeyBrace {
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0;
+}
+
+.storedPromptKeyText {
+    flex: 1 1 auto;
+    cursor: text;
+}
+
+.storedPromptTextArea {
+    flex: 1 1 auto;
+    height: 80px;
+    cursor: text;
+}
+
+.storedPromptTextArea {
+    flex: 1 1 auto;
+    height: 60px;
+    cursor: text;
+}
+
+.allStoredPromptsTextArea {
+    flex: 1 1 auto;
+    height: 300px;
+    cursor: text;
+}
+
+.allStoredPromptsTextArea.error {
+    border: 1px solid red;
+    border-radius: 3px;
+}
+
+.allStoredPromptsErrorText {
+    color: red;
+}
+
+.addPromptButton {
+    flex: 1 1 auto;
+    cursor: pointer;
+}
