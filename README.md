@@ -1,49 +1,56 @@
 # Easy Photoshop Stable Diffusion Plugin
 
-Easiest yet powerful Automatic1111-enabled Photoshop Stable Diffusion plugin
+[![discord-badge]][discord-link]
+[![twitter-badge]][twitter-link]
 
-## Install dependencies
+[discord-badge]: https://badgen.net/badge/Photoshop%20Stable%20Diffusion%20Plugin/discord/green
+[discord-link]: https://discord.gg/4jHrg4cy
+[twitter-badge]: https://badgen.net/badge/artmineio/twitter/blue?icon=twitter
+[twitter-link]: https://twitter.com/artmineio
 
-First, make sure that `npm` is installed on your system.
+Easy to use yet powerful Automatic1111-enabled Photoshop Stable Diffusion plugin. If you are new to Stable Diffusion, 
+the intuitive UI will guide you through the process of using it while setting all of its settings automatically. 
+If you are a seasoned user, it will give you the full power of Automatic1111 UI within Photoshop while having you make
+as little clicks or repetitive actions as possible.
 
-After you ensure that your terminal is in the root of this project, use `npm` to install the various dependencies needed:
+* Works with local installation of Automatic1111
+* Just type a prompt, select a region on the image to generate/modify and see the results
+* For inpainting, create a mask layer with one click and paint over it
+* If you don't know what settings you want, let the plugin show you how different combinations work
+* Save your favorite prompts with a single click and use them later just as easily
+* Specify any custom Automatic1111 URL for remote installation
 
-```
-npm install
-```
+## Installation
 
-If you prefer to use `yarn`, after you generate the `package-lock.json` file you can run the following line to import dependencies to a `yarn.lock` file: 
+This plugin requires `yarn` and `python 3.7+` installed. To install `yarn`, check [this link](https://classic.yarnpkg.com/lang/en/docs/install/).
 
-```
-yarn import
-```
+### Download the plugin code
 
-## Build Process
+If you use git, you can get the plugin code via the following command:
 
-There are two ways to build the plugin for use in Photoshop:
+```git clone https://github.com/artmineio/easy-photoshop-stable-diffusion-plugin.git```
 
-* `yarn watch` (or `npm watch`) will build a development version of the plugin, and recompile everytime you make a change to the source files. The result is placed in `dist` folder. 
-* `yarn build` (or `npm build`) will build a production version of the plugin and place it in `dist` folder. It will not update every time you make a change to the source files.
+Alternatively, you can navigate to the [github repository](https://github.com/artmineio/easy-photoshop-stable-diffusion-plugin), click on the green `Code` button and click "Download ZIP". Then unzip the contents. 
 
-> You **must** run either `watch` or `build` prior to trying to use within Photoshop!
+### Prepare the plugin
 
-## Launching in Photoshop
+Once you have the plugin code locally on your machine, navigate to the `easy-photoshop-stable-diffusion-plugin` folder and run:
 
-You can use the UXP Developer Tools to load the plugin into Photoshop.
+`run.bat` on Windows or `./run.sh` on Linux/Mac.
 
-If the plugin hasn't already been added to your workspace in the UXP Developer Tools, you can add it by clicking "Add Plugin...". You can either add the `manifest.json` file in the `dist` folder or the `plugin` folder.
-* If you add the one in the `plugin` folder, then you need to update the relative path to the plugin build folder ( `dist` ) by clicking the ••• button > "Options" > "Advanced" > "Plugin build folder".
-* During development, it is recommended to build the plugin using `yarn watch` and load the `manifest.json` in the (plugin build) `dist` folder. 
+### Load the plugin into Photoshop
 
-Once added, you can load it into Photoshop by clicking the ••• button on the corresponding row, and clicking "Load". Switch to Photoshop and you should see the starter panels.
+* Run Photoshop. Navigate to Edit -> Preferences -> Plugins on Windows and make sure "Enable Developer Mode" is checked 
+  * On Mac it would be Photoshop -> Settings... -> Plugins... 
+* Run Adobe UXP Developer Tool
+  * If you don't have it, make sure to install it as per [this link](https://developer.adobe.com/photoshop/uxp/devtool/installation/)
+* Click "Add Plugin" and navigate to `easy-photoshop-stable-diffusion-plugin/dist` folder and pick the `manifest.json` file
+  * Make sure to select the `manifest.json` from `dist` folder, *not* the `plugin` folder
+* The plugin should appear in the list of plugins. Click on the three dots in the "Actions" column and click "Load"
+* Open Photoshop, and in the menu navigate to Plugins -> Plugins Panel and click "Easy Stable Diffusion Plugin"
 
-## What this plugin does
+The plugin should be ready to use. In case of any errors the plugin should tell you what's wrong and how to resolve it.
 
-This plugin doesn't do much, but does illustrate how to create two panels in Photoshop with `entrypoints.setup`, and how to create flyout menus. It also demonstrates the use of several Spectrum UXP widgets to create a simple color picker in the primary panel.
+## Usage
 
-### Common Issues 
-
-If you're getting errors with `npm install`, we can reinstall the project dependencies. Let's first make sure to delete `node_modules/*` from the `template` folder as well as the `package-lock.json` and `yarn.lock` file. Staying in the `template` directory, run `npm install` again and this will regenerate your `package-lock.json` file. 
-
-PS Version : 23.2.0 or higher
-UXP Version : 5.6 or higher
+The plugin interface should guide you through the process of using it.

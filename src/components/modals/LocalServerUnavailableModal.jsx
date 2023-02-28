@@ -32,8 +32,8 @@ export const LocalServerUnavailableModal  = () => {
   }
 
   const localServerStartScript = isWindowsPlatform()
-    ? "start_server.bat"
-    : "./start_server.sh"
+    ? "run.bat"
+    : "./run.sh"
   return (
     <>
       <div className="settingsModalContainer">
