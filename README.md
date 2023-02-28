@@ -13,12 +13,13 @@ the intuitive UI will guide you through the process of using it while setting al
 If you are a seasoned user, it will give you the full power of Automatic1111 UI within Photoshop while having you make
 as little clicks or repetitive actions as possible.
 
-* Works with local installation of Automatic1111
+* Works with local or remote installation of Automatic1111 (set via a URL)
 * Just type a prompt, select a region on the image to generate/modify and see the results
 * For inpainting, create a mask layer with one click and paint over it
 * If you don't know what settings you want, let the plugin show you how different combinations work
 * Save your favorite prompts with a single click and use them later just as easily
-* Specify any custom Automatic1111 URL for remote installation
+* The plugin remembers the last settings you used, so you can continue working from where you left off
+* History of generations is preserved
 
 ## Installation
 
@@ -38,6 +39,24 @@ Once you have the plugin code locally on your machine, navigate to the `easy-pho
 
 `run.bat` on Windows or `./run.sh` on Linux/Mac.
 
+### Prepare Automatic1111
+
+If you run [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui) UI locally, you will need to make sure to run it in `--api` mode. In order to do that:
+
+* Navigate to the `stable-diffusion-webui` folder where it's installed
+* On Windows edit the `webui-user.bat` file and replace:
+* `set COMMANDLINE_ARGS=` 
+* with:
+* `set COMMANDLINE_ARGS=--api`
+* For Linux/Mac, edit the `webui-user.sh` file and make sure to add the following at the end of the file:
+* `export COMMANDLINE_ARGS="--api"`
+  * In case it has problems starting, try the following configuration:
+  * `export COMMANDLINE_ARGS="--api --skip-torch-cuda-test --no-half --use-cpu interrogate"`
+
+When the plugin starts up it will try to connect to the standard local Automatic1111 URL, and it will ask you to specify
+the correct URL if it fails. So if you have a remote installation of Automatic111 (or a different local port), just run
+the plugin and give it your URL when it asks.
+
 ### Load the plugin into Photoshop
 
 * Run Photoshop. Navigate to Edit -> Preferences -> Plugins on Windows and make sure "Enable Developer Mode" is checked 
@@ -51,6 +70,17 @@ Once you have the plugin code locally on your machine, navigate to the `easy-pho
 
 The plugin should be ready to use. In case of any errors the plugin should tell you what's wrong and how to resolve it.
 
+## Updating
+
+Updating requires having the `git` command available. 
+To update to the recent plugin version, stop the currently running `run.bat` or `run.sh` script (if any), and run:
+
+`update.bat` on Windows or `./update.sh` on Linux/Mac.
+
+Then run `run.bat` or `run.sh` again. 
+
 ## Usage
 
-The plugin interface should guide you through the process of using it.
+The plugin interface should guide you through the process of using it. The interface is also rich in tooltips, 
+so if you don't know what a certain button does, hover over it with a mouse to see a short description. 
+If you do something wrong the interface will try to correct you as well. 
