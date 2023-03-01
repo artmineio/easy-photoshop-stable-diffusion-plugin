@@ -27,6 +27,21 @@ GRADIO_UI_RUN_PREDICT_PATH = "/run/predict"
 GRADIO_UI_RUN_PREDICT_FN_INDEX = 206
 
 
+# TODO: replace with more-itertools
+def first_true(iterable, default=False, pred=None):
+    """Returns the first true value in the iterable.
+
+    If no true value is found, returns *default*
+
+    If *pred* is not None, returns the first item
+    for which pred(item) is true.
+
+    """
+    # first_true([a,b,c], x) --> a or b or c or x
+    # first_true([a,b], x, f) --> a if f(a) else b if f(b) else x
+    return next(filter(pred, iterable), default)
+
+
 class Automatic1111ClientGenerateImageRequest(BaseModel):
     init_images_base64: List[str]
     mask_base64: Optional[str]
@@ -106,6 +121,7 @@ class Automatic1111Client:
                 ),
                 response
             ))
+            current_model_hash = None
             try:
                 current_model_hash = self._get_default_sd_model_hash_via_predict()
                 print(f"Current model hash: {current_model_hash}")
@@ -121,6 +137,32 @@ class Automatic1111Client:
         except requests.exceptions.ConnectionError:
             raise self._bad_connection_error()
 
+    @staticmethod
+    def _get_ui_model_hash_from_item(item):
+        """
+        Automatic1111 API does not expose the current model, so we need to fetch it via the obscure API used by FE
+        This method determines if one of the items in that obscure API corresponds to the model hash and if so returns it
+        """
+        if type(item.get("value", None)) != str:
+            return None
+
+        model_hash_search = re.search(GRADIO_UI_MODEL_NAME_WITH_HASH_REGEX, item.get("value", ""))
+        if model_hash_search is not None and len(model_hash_search.groups()) > 0:
+            # We've found an element with value "model_name [model_hash]"
+            model_hash_search.group(1)
+
+        choices = item.get("choices", [])
+        choice_that_looks_like_model_with_hash = next(
+            (choice for choice in choices if type(choice) == str and
+             re.search(GRADIO_UI_MODEL_NAME_WITH_HASH_REGEX, choice)),
+            None
+        )
+        if choice_that_looks_like_model_with_hash is not None:
+            # Looks like this is another version of what can happen; the choices list has the model with hash,
+            # so value must be the model hash itself
+            return item.get("value", None)
+        return None
+
     def _get_default_sd_model_hash_via_predict(self) -> Optional[str]:
         try:
             response = requests.post(
@@ -128,18 +170,16 @@ class Automatic1111Client:
                 json={"fn_index": GRADIO_UI_RUN_PREDICT_FN_INDEX, "data": []}
             ).json()
             data_items = response.get("data", [])
-            model_dropdown_item = next((item for item in data_items if type(item.get("value", None)) == str and
-                                        re.search(GRADIO_UI_MODEL_NAME_WITH_HASH_REGEX, item.get("value", None))), {})
-            model_name_and_hash = model_dropdown_item.get("value", None)
-            if model_dropdown_item is None:
-                print("Could not find the current model dropdown from Automatic1111 UI")
-                return None
 
-            model_hash_search = re.search(GRADIO_UI_MODEL_NAME_WITH_HASH_REGEX, model_name_and_hash)
-            if model_hash_search is None or len(model_hash_search.groups()) <= 0:
-                print("Could not determine the model hash from the dropdown value in Automatic1111 UI")
-                return None
-            return model_hash_search.group(1)
+            model_hashes = map(
+                lambda item: self._get_ui_model_hash_from_item(item),
+                data_items
+            )
+            model_hash = first_true(model_hashes, pred=lambda h: h is not None)
+            if not model_hash:
+                print("Could not find the model dropdown with model hash from Automatic1111 UI")
+
+            return model_hash
         except requests.exceptions.ConnectionError:
             raise self._bad_connection_error()
 
