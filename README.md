@@ -84,3 +84,14 @@ Then run `run.bat` or `run.sh` again.
 The plugin interface should guide you through the process of using it. The interface is also rich in tooltips, 
 so if you don't know what a certain button does, hover over it with a mouse to see a short description. 
 If you do something wrong the interface will try to correct you as well. 
+
+## Clearing the history
+
+If you want to clear the usage history, remove the contents of the `dist\output\` folder and reload the plugin in UXP
+
+If you want to reset the settings to default, remove the contents of the `local_server\storage` folder
+
+## Contributing
+
+Contributions are welcome and very much appreciated! Feel free to create an issue or submit a pull request 
+if you'd like to propose a change. Also, feel free to reach out over our [discord][discord-link]!
