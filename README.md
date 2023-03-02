@@ -21,6 +21,10 @@ as little clicks or repetitive actions as possible.
 * The plugin remembers the last settings you used, so you can continue working from where you left off
 * History of generations is preserved
 
+Click the image below to see the demo:
+
+[![Click to see the semo](https://i.imgur.com/DzNn2z3.jpg)](https://youtu.be/Ppj1-PPJ_sk "Easy Photoshop Stable Diffusion Plugin, Free & Open Source")
+
 ## Installation
 
 This plugin requires `yarn` and `python 3.7+` installed. To install `yarn`, check [this link](https://classic.yarnpkg.com/lang/en/docs/install/).
@@ -84,6 +88,8 @@ Then run `run.bat` or `run.sh` again.
 The plugin interface should guide you through the process of using it. The interface is also rich in tooltips, 
 so if you don't know what a certain button does, hover over it with a mouse to see a short description. 
 If you do something wrong the interface will try to correct you as well. 
+
+The video tutorial is also available [on youtube](https://youtu.be/Ppj1-PPJ_sk).
 
 ## Clearing the history
 
