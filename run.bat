@@ -1,16 +1,16 @@
 @echo off
 
-pushd local_server
-
 set PYTHON="%~dp0%venv\Scripts\Python.exe"
 
 if not exist venv\ (
-  %PYTHON% -m venv .\venv
+  echo Setting up Python environment...
+  python -m venv .\venv
 )
 
-%PYTHON% -m pip install -r requirements.txt
+echo %PYTHON%
+%PYTHON% -m pip install -r local_server\requirements.txt
 
-start /b %PYTHON% -m uvicorn main:app --reload --port 8088
-start /b yarn --cwd .. watch
+set NODE_OPTIONS=--openssl-legacy-provider
 
-popd
+start /b "" %PYTHON% -m uvicorn --app-dir=local_server main:app --reload --port 8088
+start /b "" npm install --silent && yarn build && yarn watch
