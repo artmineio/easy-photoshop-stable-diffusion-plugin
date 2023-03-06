@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git pull
+git pull --rebase
