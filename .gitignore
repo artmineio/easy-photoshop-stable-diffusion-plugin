@@ -4,3 +4,4 @@ node_modules/
 dist/
 __pycache__/
 venv/
+package-lock.json

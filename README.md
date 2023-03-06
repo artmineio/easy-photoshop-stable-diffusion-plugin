@@ -27,7 +27,9 @@ Click the image below to see the demo:
 
 ## Installation
 
-This plugin requires `yarn` and `python 3.7+` installed. To install `yarn`, check [this link](https://classic.yarnpkg.com/lang/en/docs/install/).
+This plugin requires `node` and `python 3.7+` installed. 
+
+To install `node`, you can download `node` installer [here](https://nodejs.org/en/download/). Go through the installer with all of the default options
 
 ### Download the plugin code
 
