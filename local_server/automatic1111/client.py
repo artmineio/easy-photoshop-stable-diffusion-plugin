@@ -24,7 +24,8 @@ GRADIO_UI_CONFIG_REGEX = r"<script>window.gradio.config = (.*);</script>"
 GRADIO_UI_MODELS_DROPDOWN_ID = 922
 GRADIO_UI_MODEL_NAME_WITH_HASH_REGEX = r".*\[(\w+)\]$"
 GRADIO_UI_RUN_PREDICT_PATH = "/run/predict"
-GRADIO_UI_RUN_PREDICT_FN_INDEX = 206
+# GRADIO_UI_RUN_PREDICT_FN_INDEX = 206
+GRADIO_UI_RUN_PREDICT_FN_INDEX = 204
 
 
 # TODO: replace with more-itertools
@@ -143,13 +144,15 @@ class Automatic1111Client:
         Automatic1111 API does not expose the current model, so we need to fetch it via the obscure API used by FE
         This method determines if one of the items in that obscure API corresponds to the model hash and if so returns it
         """
-        if type(item.get("value", None)) != str:
+        print("item", item)
+        if type(item.get("value", None)) != str or type(item.get("choices", None)) != list:
             return None
 
         model_hash_search = re.search(GRADIO_UI_MODEL_NAME_WITH_HASH_REGEX, item.get("value", ""))
         if model_hash_search is not None and len(model_hash_search.groups()) > 0:
             # We've found an element with value "model_name [model_hash]"
-            model_hash_search.group(1)
+            print("Found model hash!", model_hash_search.group(1))
+            return model_hash_search.group(1)
 
         choices = item.get("choices", [])
         choice_that_looks_like_model_with_hash = next(
@@ -159,7 +162,8 @@ class Automatic1111Client:
         )
         if choice_that_looks_like_model_with_hash is not None:
             # Looks like this is another version of what can happen; the choices list has the model with hash,
-            # so value must be the model hash itself
+            # but value could be the model hash itself
+            print("Found model hash 2!", item.get("value", None))
             return item.get("value", None)
         return None
 
@@ -171,6 +175,7 @@ class Automatic1111Client:
             ).json()
             data_items = response.get("data", [])
 
+            print("Current model UI response", data_items)
             model_hashes = map(
                 lambda item: self._get_ui_model_hash_from_item(item),
                 data_items
