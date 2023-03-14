@@ -1,5 +1,8 @@
 @echo off
 
+REM https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported
+set NODE_OPTIONS=--openssl-legacy-provider
+
 set PYTHON="%~dp0%venv\Scripts\Python.exe"
 
 if not exist venv\ (
